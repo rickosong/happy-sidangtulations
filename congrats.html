@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Graduation Dhani! 🎓✨</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+        /* Tema Background Meriah */
+        body {
+            background: linear-gradient(135deg, #ffe6ea 0%, #ffc5d3 100%);
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #5c3a4d;
+            overflow-x: hidden;
+        }
+
+        /* Animasi Background Melayang */
+        .floating-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floating-bg span {
+            position: absolute;
+            bottom: -50px;
+            font-size: 2rem;
+            animation: floatUp 10s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Container Card Mewah & Meriah */
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 30px 0px; /* Bawah 0 agar vektor mepet */
+            border-radius: 25px;
+            border: 3px solid #ffb6c1; /* Border pink manis */
+            box-shadow: 0 15px 40px rgba(255, 105, 135, 0.4), 
+                        inset 0 0 20px rgba(255, 192, 203, 0.5); /* Glow effect */
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            backdrop-filter: blur(10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        .hidden {
+            display: none !important;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        /* Tipografi */
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #ff3366;
+            font-size: 3rem;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(255, 51, 102, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #d81b60;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* Form Tanggal Lahir */
+        .input-group {
+            margin: 25px 0;
+        }
+
+        input[type="date"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px dashed #ff4d88;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            color: #5c3a4d;
+            box-sizing: border-box;
+            outline: none;
+            transition: all 0.3s;
+            font-size: 1rem;
+            background: #fffafa;
+        }
+
+        input[type="date"]:focus {
+            border-style: solid;
+            box-shadow: 0 0 12px rgba(255, 77, 136, 0.3);
+        }
+
+        /* Tombol Animasi Meriah */
+        .btn-cute {
+            background: linear-gradient(135deg, #ff4d88 0%, #ff7eb3 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(255, 77, 136, 0.4);
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .btn-surprise {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            color: #d81b60;
+            border: 2px solid #ff9a9e;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(255, 154, 158, 0.5);
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 15px;
+            animation: pulse 1.5s infinite; /* Animasi berkedip/membesar */
+        }
+
+        .btn-cute:hover, .btn-surprise:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(255, 77, 136, 0.6);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); box-shadow: 0 10px 25px rgba(255, 154, 158, 0.7); }
+            100% { transform: scale(1); }
+        }
+
+        .error {
+            color: #ff3366;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            min-height: 20px;
+            font-weight: 600;
+        }
+
+        /* Gambar Vektor di Bawah */
+        .grad-img {
+            width: 100%;
+            max-width: 380px;
+            height: auto;
+            margin: 0 auto -5px; /* Nempel ke bawah border */
+            display: block;
+            animation: floatImg 3s ease-in-out infinite;
+        }
+
+        @keyframes floatImg {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="floating-bg">
+        <span style="left: 10%; animation-delay: 0s;">🎈</span>
+        <span style="left: 25%; animation-delay: 2s; font-size: 1.5rem;">✨</span>
+        <span style="left: 45%; animation-delay: 4s;">🎀</span>
+        <span style="left: 65%; animation-delay: 1s; font-size: 2.5rem;">🎓</span>
+        <span style="left: 85%; animation-delay: 3s;">🎈</span>
+        <span style="left: 95%; animation-delay: 5s; font-size: 1.5rem;">✨</span>
+    </div>
+
+    <div id="gate-section" class="card">
+        <h1>Haii! 🌸</h1>
+        <p>Ada kejutan spesial buat ngerayain kelulusanmu. Masukin tanggal lahir kamu dulu ya buat buka gemboknya!</p>
+        
+        <div class="input-group">
+            <input type="date" id="dob-input">
+        </div>
+        
+        <button onclick="checkDOB()" class="btn-cute">Buka Pesan ✨</button>
+        <div id="error-msg" class="error"></div>
+    </div>
+
+    <div id="main-section" class="card hidden">
+        <h1>Happy Graduation! 🎓</h1>
+        <div class="subtitle">Nur Ramadhani Putri Wulandari, S.Tr.Kom</div>
+        <img src="vektornya-removebg-preview.png" alt="Graduation Girl" class="grad-img">
+        <br>
+        <br>
+        <p>
+            Yeay! Akhirnya perjalanan panjang skripsi dan sidang yang mendebarkan dan penuh drama (akawowak) selesai juga. Bangga banget sama perjuangan hebatnya! ✨
+        </p>
+        <p>
+            Semoga kelulusan ini jadi awal dari petualangan baru yang lebih seru dan penuh warna. Jangan lupa rayain momen spesial ini dengan penuh kebahagiaan ya! Sorry ya aku gak bisa datang ke sana ikut merayakan, jadi ini hadiahku dibawah sebagai gantinya, mungkin B aja tapi semoga berkenan 🎉
+        </p>
+        <p>
+            Sekali lagi, selamat ya! Semoga sukses selalu menyertai langkahmu ke depan. Jangan lupa tetap semangat dan terus berkarya! 💖 
+        </p>
+        <a href="https://link.dana.id/danakaget?c=sls2rpxh5&r=hX4WoF&orderId=20260716101214533715010300166671488100721" target="_blank" class="btn-surprise">Ini Untukmu ya Cantik (kowakoawko) 🎁</a>
+        <br>
+        <br>
+
+    </div>
+
+    <script>
+        function checkDOB() {
+            const dob = document.getElementById('dob-input').value;
+            const errorMsg = document.getElementById('error-msg');
+            
+            if (dob === '2003-11-13') {
+                document.getElementById('gate-section').classList.add('hidden');
+                
+                setTimeout(() => {
+                    document.getElementById('gate-section').style.display = 'none';
+                    const mainSection = document.getElementById('main-section');
+                    mainSection.classList.remove('hidden');
+                    
+                    // Panggil fungsi konfeti yang heboh
+                    fireConfetti();
+                }, 400);
+
+            } else if (!dob) {
+                errorMsg.textContent = 'Eh, diisi dulu dong tanggal lahirnya! 🥺';
+            } else {
+                errorMsg.textContent = 'Oops, kayaknya bukan tanggal ini deh! Coba ingat-ingat lagi 🤭';
+            }
+        }
+
+        // Animasi Konfeti Berkali-kali agar lebih meriah
+        function fireConfetti() {
+            var duration = 5000; // Durasi 5 detik
+            var end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 7,
+                    angle: 60,
+                    spread: 80,
+                    origin: { x: 0 },
+                    colors: ['#ff3366', '#ff7eb3', '#f6d365', '#ffffff']
+                });
+                confetti({
+                    particleCount: 7,
+                    angle: 120,
+                    spread: 80,
+                    origin: { x: 1 },
+                    colors: ['#ff3366', '#ff7eb3', '#f6d365', '#ffffff']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+    </script>
+</body>
+</html>
